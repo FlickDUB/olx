@@ -41,7 +41,7 @@ class SpSpider(scrapy.Spider):
                 '//ul[@id="contact_methods_below"]/li/@class').get()
             uid = data.strip(
                 'link-phone clr rel  atClickTracking contact-a activated')
-            uid = eval(uid)['id']
+            uid = json.loads(uid.replace("'", '"'))['id']
         except:
             item['phone_number'] = None
         else:
@@ -93,7 +93,7 @@ class SpSpider(scrapy.Spider):
         yield item
 
     def get_phone_numbers(self, response, item_obj):
-        phone_data = eval(response.text)['value']
+        phone_data = json.loads(response.text)['value']
         numbers = []
         if 'span' in phone_data and '000 000 000' not in phone_data:
             soup = bs(phone_data, 'lxml')
