@@ -1,4 +1,5 @@
 # Byte-compiled / optimized
+
 **/__pycache__/
 *.py[cod]
 
@@ -8,3 +9,4 @@ olx/olx/spiders/__pycache__/
 olx/olx/__init__.py
 
 *.json
+
