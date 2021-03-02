@@ -1,5 +1,5 @@
 from olx.items import OlxItem
-from olx.utils import get_item_or_none
+from olx.utils import get_item_or_none, find_phone_number
 
 import scrapy
 
@@ -75,6 +75,17 @@ class SpSpider(scrapy.Spider):
 		item['date_time'] = get_item_or_none(response.xpath('//li[@class="offer-bottombar__item"]/em/strong/text()').get())[2:]
 		item['ad_number'] = get_item_or_none(response.xpath('//li[@class="offer-bottombar__item"]/strong/text()').get())
 
+		if not 'phone_number' in item or not item['phone_number']:
+			phone_numbers = []
+			all_text_data = item['user_url'] + item['user_name'] + item['description']
+			numbers = find_phone_number(all_text_data)
+
+			if not numbers:
+				item['phone_number'] = None
+			else:
+				phone_numbers.append(numbers)
+				item['phone_number'] = [i for i in numbers]
+
 		yield item
 	
 	def get_phone_numbers(self, response, item_obj):
@@ -86,13 +97,15 @@ class SpSpider(scrapy.Spider):
 				if phone_number.text != '000 000 000':
 					numbers.append(phone_number.text)
 				else:
-					item_obj['phone_number'] = None
+					if 'phone_number' not in item_obj:
+						item_obj['phone_number'] = None
 				
 			item_obj['phone_number'] = numbers
 		else:
 			if phone_data != '000 000 000':
 				item_obj['phone_number'] = phone_data
 			else:
-				item_obj['phone_number'] = None
-		
+				if 'phone_number' not in item_obj:
+						item_obj['phone_number'] = None
+
 		yield item_obj
