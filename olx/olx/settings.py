@@ -15,9 +15,10 @@ NEWSPIDER_MODULE = 'olx.spiders'
 LOG_STDOUT = True
 LOG_LEVEL = 'INFO'
 
-FEED_EXPORT_FIELDS = ['ad_url', 'user_name', 'user_url', 'phone_number', 'title', 'description', 'photo_urls', 'price', 'address', 'date_time', 'ad_number']
-FEED_FORMAT="json" # формат файла для вывода данных(json, csv, xml)
-FEED_URI="data.json" # путь для сохранения файла 
+FEED_EXPORT_FIELDS = ['ad_url', 'user_name', 'user_url', 'phone_number', 'title',
+                      'description', 'photo_urls', 'price', 'address', 'date_time', 'ad_number']
+FEED_FORMAT = "json"  # формат файла для вывода данных(json, csv, xml)
+FEED_URI = "data.json"  # путь для сохранения файла
 
 FEED_EXPORT_ENCODING = 'utf-8'
 
@@ -81,34 +82,34 @@ CONCURRENT_REQUESTS_PER_IP = 1
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-#DEFAULT_REQUEST_HEADERS = {
+# DEFAULT_REQUEST_HEADERS = {
 #   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
 #   'Accept-Language': 'en',
-#}
+# }
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
+# SPIDER_MIDDLEWARES = {
 #    'olx.middlewares.OlxSpiderMiddleware': 543,
-#}
+# }
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
+# DOWNLOADER_MIDDLEWARES = {
 #    'olx.middlewares.OlxDownloaderMiddleware': 543,
-#}
+# }
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
-#EXTENSIONS = {
+# EXTENSIONS = {
 #    'scrapy.extensions.telnet.TelnetConsole': None,
-#}
+# }
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
+# ITEM_PIPELINES = {
 #    'olx.pipelines.OlxPipeline': 300,
-#}
+# }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

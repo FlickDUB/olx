@@ -90,6 +90,7 @@ class SpSpider(scrapy.Spider):
         item['ad_number'] = get_item_or_none(response.xpath(
             '//li[@class="offer-bottombar__item"]/strong/text()').get())
 
+<<<<<<< HEAD
         if not 'phone_number' in item or not item['phone_number']:
             phone_numbers = []
             all_text_data = item['user_url'] + \
@@ -114,3 +115,17 @@ class SpSpider(scrapy.Spider):
     item_obj['phone_number'] = numbers if numbers else None
 
     yield item_obj
+=======
+        yield item
+
+    def get_phone_numbers(self, response, item_obj):
+        phone_data = json.loads(response.text)['value']
+        numbers = []
+        if 'span' in phone_data and '000 000 000' not in phone_data:
+            soup = bs(phone_data, 'lxml')
+            for phone_number in soup.find_all('span'):
+                numbers.append(phone_number.text)
+        item_obj['phone_number'] = numbers if numbers else None
+
+        yield item_obj
+>>>>>>> 107382bcb940cfbecb7b609240ae62605aa5cf11
