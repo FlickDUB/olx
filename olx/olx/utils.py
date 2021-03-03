@@ -1,12 +1,8 @@
 import re
 
-import re
-
 
 def get_item_or_none(item):
-    if item:
-        return item.strip()
-    return None
+    return item.strip() if item else None
 
 
 def find_phone_number(string):
