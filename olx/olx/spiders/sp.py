@@ -89,7 +89,7 @@ class SpSpider(scrapy.Spider):
             '//li[@class="offer-bottombar__item"]/em/strong/text()').get())[2:]
         item['ad_number'] = get_item_or_none(response.xpath(
             '//li[@class="offer-bottombar__item"]/strong/text()').get())
-
+        
         if not 'phone_number' in item or not item['phone_number']:
             phone_numbers = []
             all_text_data = item['user_url'] + \

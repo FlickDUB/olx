@@ -1,5 +1,7 @@
 import re
 
+import re
+
 
 def get_item_or_none(item):
     if item:
@@ -8,7 +10,7 @@ def get_item_or_none(item):
 
 
 def find_phone_number(string):
-    data = re.findall('[0-9]{10,11}', string)
-    if data:
-        return data
-    return None
+    raw = re.sub(r'[^+\s\d()-]', '', string)
+    raw = re.sub(r'([\s]|[^+\d()-]){2,}', '  ', raw).split('  ')
+    result = [re.sub(r'[^\d]', '', phone) for phone in raw if len(phone) >= 10]
+    return result if result else None
