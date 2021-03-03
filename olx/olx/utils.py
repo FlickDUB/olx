@@ -1,6 +1,5 @@
 import re
 
-
 def get_item_or_none(item):
     return item.strip() if item else None
 
